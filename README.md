@@ -134,8 +134,6 @@ kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group demo-
 
 - It also verifies that all messages with the same key are written to the same partition.
 
-- For more on the component tests see: https://github.com/lydtechconsulting/component-test-framework
-
 - Build Spring Boot application jar:
 ```
 mvn clean install
