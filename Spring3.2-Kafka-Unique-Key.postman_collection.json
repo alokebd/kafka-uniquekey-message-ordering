@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "341871f4-e11e-4135-9eda-8f5532153d47",
+		"name": "Spring3.2-Kafka-Unique-Key",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33936986"
+	},
+	"item": [
+		{
+			"name": "Publish Kafka Data -V1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 101,\r\n    \"firstName\": \"Aloke\",\r\n    \"middleName\": \"Kumar\",\r\n    \"lastName\": \"Das\",\r\n    \"emailId\": \"alokebd@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/kafka/v1/messages/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"kafka",
+						"v1",
+						"messages",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish Kafka Data -V2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 101,\r\n    \"firstName\": \"Aloke\",\r\n    \"middleName\": \"Kumar\",\r\n    \"lastName\": \"Das\",\r\n    \"emailId\": \"alokebd@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/kafka/v2/messages/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"kafka",
+						"v2",
+						"messages",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
