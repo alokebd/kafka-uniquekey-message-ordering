@@ -7,23 +7,30 @@
 ## Prerequisites
 - Spring Boot (3.2.1)
 - Maven 
+- Docker
 - Java (17)
 - Libraries:
   * starter-web 
   * kafka
   * lombok/logback
-  * okhttp-eventsource
 
 ## Build
-
 - With Java version 17:
 
 ```
 mvn clean install
 ```
 ## Run Spring Boot Application
+- Applicaton can be testes manually or by using Docker compose file as below:
 
-### ******************Manual Process**********************###
+## Test unique key
+- Call v1 API with 25 messages processing (http://localhost:9001/kafka/v1/messages/25)
+- 10 partitions are created in one topic where same unique key (eg. key:3) is in partion 1 as an example below.
+![UniqueKeyInSamePartion](UniqueKeyInSamePartion.PNG)
+
+- NOTE: Kafka hashes the key, and the result is used to map the message to a specific partition.
+
+###----------------Manual Process--------------------------
 
 ## START THE KAFKA ENVIRONMENT:
 - NOTE: Local environment must have Java 8+ installed.
@@ -35,7 +42,7 @@ mvn clean install
 #### View topics
 - Offset Explorer/Conduktor Kafka tool can be used 
 
-### ******************With Docker ***********************###
+###----------------Docker Process --------------------------
 
 ## Run docker containers
 

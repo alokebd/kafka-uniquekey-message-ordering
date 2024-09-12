@@ -3,7 +3,11 @@ package com.java2tech.kafka.producer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.ExecutionException;
+
+import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
@@ -50,10 +54,16 @@ public class KafkaProducer {
     
     
     
-    /*
+    
     //2. NewTopic
     @Bean
     public NewTopic messageTopic(){
-        return new NewTopic(properties.getOutboundTopic(),3,(short) 1);
-    }*/
+        //return new NewTopic(EventData.OUTBOUND_TOPIC,3,(short) 1); //name, partition, replica
+    	return TopicBuilder.name(EventData.OUTBOUND_TOPIC)
+    	          .partitions(10)
+    	          .replicas(3)
+    	          .compact()
+    	          .build();
+    }
+
 }

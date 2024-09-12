@@ -49,4 +49,10 @@ public class EventData {
     	 int max=10000000,min=999;
     	 return rand.nextInt(max - min + 1) + min;
     }
+    
+    public static int squenceNumber() {
+   	 Random rand = new Random();
+   	 int max=10000000,min=999;
+   	 return rand.nextInt(max - min + 1) + min;
+   }
 }

@@ -2,14 +2,11 @@ package com.java2tech.kafka.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
 import com.java2tech.kafka.event.InboundKey;
 import com.java2tech.kafka.event.InboundPayload;
 import com.java2tech.kafka.event.OutboundKey;
@@ -34,15 +31,14 @@ public class KafkaMessagingService {
 		OutboundKey outboundKey = OutboundKey.builder().id(key.getId()).build();
 		
 		log.info("Processed data: \n:" + " key{} , payload {}", outboundKey, outboundPayload);
-		//kafkaProducer.sendMessage(outboundKey, outboundPayload);
+		kafkaProducer.sendMessage(outboundKey, outboundPayload);
 	}
 	
 
 	// @Scheduled(fixedRate = 2000)
 	public void sendAsynchronousMessage() {
-		// InboundKey key = EventData.buildDemoInboundKey(new Random().nextInt(1, 6));
-		InboundKey key = EventData.buildDemoInboundKey(11111111);
-		InboundPayload payload = EventData.buildDemoInboundPayload(101);
+		InboundKey key = EventData.buildDemoInboundKey(new Random().nextInt(1, 6));
+		InboundPayload payload = EventData.buildDemoInboundPayload(EventData.squenceNumber());
 		log.info("Request data: \n:" + " key{} , payload {}", key, payload);
 		
 		OutboundPayload outboundPayload = OutboundPayload.builder()
@@ -57,7 +53,7 @@ public class KafkaMessagingService {
 	// @Scheduled(fixedRate = 2000) // every 2 seconds
 	public void sendAsynchronousMessageAndConsumedMetadata() {
 		InboundKey key = EventData.buildDemoInboundKey(EventData.uniqueId());
-		InboundPayload payload = EventData.buildDemoInboundPayload(1001);
+		InboundPayload payload = EventData.buildDemoInboundPayload(EventData.squenceNumber());
 
 		OutboundPayload outboundPayload = OutboundPayload.builder()
 				.outboundData("Processed: " + payload.getInboundData()).sequenceNumber(payload.getSequenceNumber())
